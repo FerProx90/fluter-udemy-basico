@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 
 class CounterFunctionScreen extends StatefulWidget {
@@ -53,26 +51,54 @@ class _CounterScreen extends State<CounterFunctionScreen> {
       floatingActionButton: Column(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
-          FloatingActionButton(
+          CustomButton(
+            icon: Icons.refresh_outlined,
+            onPressed: () {
+              setState(() {
+                clickCounter = 0;
+              });
+            },
+          ),
+          const SizedBox(height: 15),
+          CustomButton(
+            icon: Icons.exposure_minus_1_outlined,
+            onPressed: () {
+              setState(() {
+                if (clickCounter == 0) return;
+                clickCounter--;
+              });
+            },
+          ),
+          const SizedBox(height: 15),
+          CustomButton(
+            icon: Icons.plus_one,
             onPressed: () {
               setState(() {
                 clickCounter++;
               });
             },
-            child: const Icon(Icons.plus_one),
-          ),
-          const SizedBox(height: 15),
-          FloatingActionButton(
-            shape: const StadiumBorder(),
-            onPressed: () {
-              setState(() {
-                clickCounter--;
-              });
-            },
-            child: const Icon(Icons.exposure_minus_1_outlined),
           ),
         ],
       ),
+    );
+  }
+}
+
+class CustomButton extends StatelessWidget {
+  final IconData icon;
+  final VoidCallback? onPressed;
+
+  const CustomButton({super.key, required this.icon, this.onPressed});
+
+  @override
+  Widget build(BuildContext context) {
+    return FloatingActionButton(
+      enableFeedback: true, // Genera un sonido ligero al hacer tap
+      elevation: 5, //es como el sombreado (bpx-shadow)
+      backgroundColor: Colors.yellow,
+      shape: const StadiumBorder(),
+      onPressed: onPressed,
+      child: Icon(icon),
     );
   }
 }
