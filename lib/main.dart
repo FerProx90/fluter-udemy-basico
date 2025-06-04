@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:hello_wordl/presentation/screens/counter/counter_functions_screen.dart';
-// import 'package:hello_wordl/presentation/screens/counter/counter_screen.dart';
 
-void main() {
-  runApp(const MyApp());
-}
+void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -12,9 +8,14 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData(colorSchemeSeed: Colors.red),
       debugShowCheckedModeBanner: false,
-      home: const CounterFunctionScreen(),
+      title: "Yes No App",
+      home: Scaffold(
+        appBar: AppBar(title: const Center(child: Text("Appbar"))),
+        body: Center(
+          child: FilledButton(onPressed: () {}, child: const Text("Click me")),
+        ),
+      ),
     );
   }
 }
