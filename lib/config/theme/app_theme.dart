@@ -24,7 +24,7 @@ class AppTheme {
   ThemeData theme() {
     return ThemeData(
       colorSchemeSeed: _colorThemes[6],
-      brightness: Brightness.dark,
+      // brightness: Brightness.dark,
     );
   }
 }

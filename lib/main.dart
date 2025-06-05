@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hello_wordl/config/theme/app_theme.dart';
+import 'package:hello_wordl/presentation/chat/chat_screen.dart';
 
 void main() => runApp(const MyApp());
 
@@ -12,12 +13,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: "Yes No App",
       theme: AppTheme().theme(),
-      home: Scaffold(
-        appBar: AppBar(title: const Center(child: Text("Appbar"))),
-        body: Center(
-          child: FilledButton(onPressed: () {}, child: const Text("Click me")),
-        ),
-      ),
+      home: const ChatScreen(),
     );
   }
 }
