@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:hello_wordl/domain/entities/message.dart';
 
 class HisMessagesBubble extends StatelessWidget {
-  const HisMessagesBubble({super.key});
+  final Message message;
+
+  const HisMessagesBubble({super.key, required this.message});
 
   @override
   Widget build(BuildContext context) {
@@ -15,11 +18,11 @@ class HisMessagesBubble extends StatelessWidget {
             color: colors.secondary,
             borderRadius: BorderRadius.circular(20),
           ),
-          child: const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
             child: Text(
-              "The undertaker",
-              style: TextStyle(color: Colors.white),
+              message.text,
+              style: const TextStyle(color: Colors.white),
             ),
           ),
         ),
