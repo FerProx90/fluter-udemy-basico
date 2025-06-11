@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hello_wordl/config/theme/app_theme.dart';
-import 'package:hello_wordl/presentation/providers/chat_provider.dart';
-import 'package:hello_wordl/presentation/screens/chat/chat_screen.dart';
+import 'package:hello_wordl/presentation/providers/discover_provider.dart';
+import 'package:hello_wordl/presentation/screens/discover/discover_screen.dart';
 import 'package:provider/provider.dart';
 
 void main() => runApp(const MyApp());
@@ -11,14 +11,13 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MultiProvider(providers: [
-      ChangeNotifierProvider(create: (_) => ChatProvider())
-    ],
+    return MultiProvider(
+      providers: [ChangeNotifierProvider(create: (_) => DiscoverProvider())],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        title: "Yes No App",
-        theme: AppTheme(selectedColor: 0).theme(),
-        home: const ChatScreen(),
+        title: "Toktik",
+        theme: AppTheme().getTheme(),
+        home: const DiscoverScreen(),
       ),
     );
   }
