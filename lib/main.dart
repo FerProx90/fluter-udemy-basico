@@ -12,7 +12,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
-      providers: [ChangeNotifierProvider(create: (_) => DiscoverProvider())],
+      providers: [
+        ChangeNotifierProvider(
+          lazy: false, // Si quieres que inmediatamente quieres que se carge la instancia y la data
+          create: (_) => DiscoverProvider()..loadNextPage(),
+        ),
+      ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: "Toktik",
