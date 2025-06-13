@@ -1,4 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Se coloca antes o despues de application, pero no dentro -->
+    <uses-permission android:name="android.permission.INTERNET"/>
     <application
         android:label="hello_wordl"
         android:name="${applicationName}"
