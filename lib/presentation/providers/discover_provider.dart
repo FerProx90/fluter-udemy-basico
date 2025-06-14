@@ -1,18 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:hello_wordl/domain/entities/video_post.dart';
-import 'package:hello_wordl/infrastructure/models/local_video_model.dart';
-import 'package:hello_wordl/shared/data/local_video_post.dart';
+import 'package:hello_wordl/domain/repositories/video_post_repositoriy.dart';
 
 class DiscoverProvider extends ChangeNotifier {
-  // TODO: Repository, dataSource
-
   bool initialLoading = true;
   List<VideoPost> videos = [];
 
+  final VideoPostRepositoriy videoPostRepository;
+
+  DiscoverProvider({required this.videoPostRepository});
+
   Future<void> loadNextPage() async {
-    final List<VideoPost> newVideos = videoPosts
-        .map((video) => LocalVideoModel.fromJsonMap(video).toVideoPostEntity())
-        .toList();
+    final newVideos = await videoPostRepository.getTrendingVideosByPage(1);
 
     videos.addAll(newVideos);
     initialLoading = false;

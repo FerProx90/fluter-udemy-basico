@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hello_wordl/config/theme/app_theme.dart';
+import 'package:hello_wordl/infrastructure/datasources/local_video_datasource_impl.dart';
+import 'package:hello_wordl/infrastructure/repositories/video_post_repository_imp.dart';
 import 'package:hello_wordl/presentation/providers/discover_provider.dart';
 import 'package:hello_wordl/presentation/screens/discover/discover_screen.dart';
 import 'package:provider/provider.dart';
@@ -11,11 +13,18 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final videoPostRepository = VideoPostsRepositoryImp(
+      videosDataSource: LocalVideoDatasourceImpl(),
+    );
+
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(
-          lazy: false, // Si quieres que inmediatamente quieres que se carge la instancia y la data
-          create: (_) => DiscoverProvider()..loadNextPage(),
+          lazy:
+              false, // Si quieres que inmediatamente quieres que se carge la instancia y la data
+          create: (_) =>
+              DiscoverProvider(videoPostRepository: videoPostRepository)
+                ..loadNextPage(),
         ),
       ],
       child: MaterialApp(
